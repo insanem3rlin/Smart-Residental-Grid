@@ -1,5 +1,7 @@
 package home.awattar_hourly_price;
 
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,10 +13,20 @@ import java.sql.Timestamp;
 @Entity
 public class Datapoint {
 
+    @JsonAdapter(TimestampAdapter.class)
+    @SerializedName("start_timestamp")
     Timestamp startDate;
+
+    @JsonAdapter(TimestampAdapter.class)
+    @SerializedName("end_timestamp")
     Timestamp endDate;
+
+    @SerializedName("marketprice")
     double value;
+
+    @SerializedName("unit")
     String unity;
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
