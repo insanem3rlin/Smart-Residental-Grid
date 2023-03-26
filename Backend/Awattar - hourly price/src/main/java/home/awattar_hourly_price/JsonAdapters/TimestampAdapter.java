@@ -1,4 +1,4 @@
-package home.awattar_hourly_price;
+package home.awattar_hourly_price.JsonAdapters;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;

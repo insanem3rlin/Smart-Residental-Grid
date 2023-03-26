@@ -1,11 +1,7 @@
-package home.awattar_hourly_price;
+package home.awattar_hourly_price.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import home.awattar_hourly_price.Models.Datapoint;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class MarketData {

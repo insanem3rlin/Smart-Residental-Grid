@@ -1,33 +1,17 @@
-package home.awattar_hourly_price;
+package home.awattar_hourly_price.Controller;
 
-import ch.qos.logback.core.CoreConstants;
 import com.google.gson.Gson;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
-import net.minidev.json.parser.ParseException;
+import home.awattar_hourly_price.Models.Datapoint;
+import home.awattar_hourly_price.Models.MarketData;
+import home.awattar_hourly_price.Repositories.DatapointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jms.JmsProperties;
-import org.springframework.boot.json.JsonParser;
-import org.springframework.boot.json.JsonParserFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.file.Paths;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class ReadJsonController {
@@ -37,6 +21,7 @@ public class ReadJsonController {
 
     @GetMapping("/loadDatapoints")
     public @ResponseBody Iterable<Datapoint> loadDatapoints() throws IOException {
+        repository.deleteAll();
         Gson gson = new Gson();
         String apiUrl = "https://api.awattar.at/v1/marketdata";
         URL url = new URL(apiUrl);
@@ -82,7 +67,7 @@ public class ReadJsonController {
         return null;
     }
 
-/*
+
     @GetMapping("/getAllPoints")
     public @ResponseBody Iterable<Datapoint> getAllPoints() {
         return repository.findAll();
@@ -96,10 +81,10 @@ public class ReadJsonController {
     @GetMapping("/getByMonth")
     public @ResponseBody Iterable<Datapoint> getBayMonth() {
         return repository.findDatapointsByStartDateYear();
-    }
+    }*/
 
     @GetMapping("/getByYear")
     public @ResponseBody Iterable<Datapoint> getByYear() {
         return repository.findAll();
-    }*/
+    }
 }

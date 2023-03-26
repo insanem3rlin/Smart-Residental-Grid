@@ -1,13 +1,13 @@
-package home.awattar_hourly_price;
+package home.awattar_hourly_price.Models;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import home.awattar_hourly_price.JsonAdapters.TimestampAdapter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
