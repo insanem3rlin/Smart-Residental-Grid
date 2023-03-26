@@ -10,7 +10,7 @@
     </parent>
     <groupId>home</groupId>
     <artifactId>Awattar_hourly_price</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Awattar - hourly price</name>
     <description>Awattar - hourly price</description>
     <properties>

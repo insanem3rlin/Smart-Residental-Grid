@@ -1,0 +1,11 @@
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /Awattar_hourly_price
+
+COPY . /Awattar_hourly_price
+
+RUN apk update && \
+	apk --no-cache add maven && \
+	mvn clean install
+
+CMD ["java", "-jar", "/target/Awattar_hourly_price.war"]
