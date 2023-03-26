@@ -1,0 +1,9 @@
+<div *ngIf="latestBatteryLevel$ | async as latestBatteryLevel">
+    <p>ID: {{ latestBatteryLevel.id }}</p>
+    <p>Battery Level: {{ latestBatteryLevel.chargingLevel }}</p>
+    <p>Timestamp: {{ latestBatteryLevel.time }}</p>
+</div>
+<!-- <div>
+    <p>Last recorded battery level at {{ latestBatteryLevel?.time | date:'short' }}:</p>
+    <h2>{{ latestBatteryLevel?.value }}</h2>
+  </div> -->
