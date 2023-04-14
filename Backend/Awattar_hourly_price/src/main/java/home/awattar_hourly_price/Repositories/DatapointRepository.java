@@ -11,8 +11,5 @@ public interface DatapointRepository extends CrudRepository<Datapoint, Long> {
 
     List<Datapoint> findDatapointByStartDate(Timestamp time);
 
-    /*@Query("SELECT AVG(value), CONCAT(CAST(MONTH(start_date) as char), ' ', CAST(YEAR(start_date) as char)) as  MonatJahr\n" +
-            "FROM datapoint\n" +
-            "GROUP BY MONTH(start_date), YEAR(start_date);")
-    List<Datapoint> findDatapointsByStartDateYear();*/
+
 }
