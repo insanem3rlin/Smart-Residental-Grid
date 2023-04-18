@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,8 +46,15 @@ public class ReadJsonController {
         URL url = new URL(apiUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
         MarketData marketData = gson.fromJson(reader, MarketData.class);
+        List<Datapoint> points = new ArrayList<>();
         try {
-            datapointRepository.saveAll(marketData.getData());
+            for (Datapoint d: marketData.getData()
+                 ) {
+                d.setValue(d.getValue() / 10);
+                d.setUnity("cent/kWH");
+                points.add(d);
+            }
+            datapointRepository.saveAll(points);
         } catch (Exception ex) {
             logger.log(Level.WARNING, ex.toString());
         } finally {
