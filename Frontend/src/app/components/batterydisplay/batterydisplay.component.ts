@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, interval, tap } from 'rxjs';
 import { BatteryLevel } from 'src/app/BatteryLevel';
 import { BatteryService } from 'src/app/services/battery.service';
 
@@ -11,11 +11,22 @@ import { BatteryService } from 'src/app/services/battery.service';
 })
 export class BatterydisplayComponent implements OnInit {
 
-  latestBatteryLevel$: Observable<BatteryLevel>;
+  latestBatteryLevel: BatteryLevel;
+  source = interval(1000);
+
 
   constructor(private batteryService: BatteryService) { }
 
   ngOnInit(): void {
-    this.latestBatteryLevel$ = this.batteryService.getLatestBatteryLevel();
+    this.getLatestBatteryLevel();
+    this.source.subscribe(value => {
+      this.getLatestBatteryLevel();
+    });
+  }
+
+  getLatestBatteryLevel() {
+    this.batteryService.getLatestBatteryLevel().subscribe(result => {
+      this.latestBatteryLevel = result;
+    })
   }
 }

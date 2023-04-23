@@ -16,6 +16,10 @@ import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PowerdisplayComponent } from './components/powerdisplay/powerdisplay.component';
 import { BatterydisplayComponent } from './components/batterydisplay/batterydisplay.component';
+import { EnergyPriceComponent } from './components/energy-price/energy-price.component';
+import { EnergyProductionComponent } from './components/energy-production/energy-production.component';
+import { EnergyUsageComponent } from './components/energy-usage/energy-usage.component';
+import { EnergyFlowComponent } from './components/energy-flow/energy-flow.component';
 
 const appRoutes: Routes = [
   {path: '', component: TasksComponent},
@@ -33,7 +37,11 @@ const appRoutes: Routes = [
     AboutComponent,
     FooterComponent,
     PowerdisplayComponent,
-    BatterydisplayComponent
+    BatterydisplayComponent,
+    EnergyPriceComponent,
+    EnergyProductionComponent,
+    EnergyUsageComponent,
+    EnergyFlowComponent
   ],
   imports: [
     BrowserModule,
