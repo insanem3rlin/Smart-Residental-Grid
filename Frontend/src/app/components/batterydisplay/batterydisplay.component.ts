@@ -13,6 +13,9 @@ export class BatterydisplayComponent implements OnInit {
 
   latestBatteryLevel: BatteryLevel;
   source = interval(1000);
+  width: any;
+  name: any;
+  level: any;
 
 
   constructor(private batteryService: BatteryService) { }
@@ -21,6 +24,9 @@ export class BatterydisplayComponent implements OnInit {
     this.getLatestBatteryLevel();
     this.source.subscribe(value => {
       this.getLatestBatteryLevel();
+      this.width = 50; //Anstatt "this.width müsste man denke ich dann ebenfalls this.getLatestBatteryLevel() nehmen. dann wär das vermutlich bereits der richtige Wert aus dem Backend"
+      this.name = "Battery charging level";
+      this.level= this.width + "%";
     });
   }
 

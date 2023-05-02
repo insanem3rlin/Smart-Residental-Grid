@@ -1,5 +1,16 @@
+<div class="name">
+    <p style="font-size: 26px"><b>{{name}}</b></p>
+    <div class="first">
+        <div [ngStyle]="{'width.%' :width}" class="second">
+            <div class="third">
+                <p style="font-size: 26px"><b>{{level}}</b></p>
+            </div>
+        </div>
+    </div>
+</div>
 <div>
     <p>ID: {{ latestBatteryLevel.id }}</p>
     <p>Battery Level: {{ latestBatteryLevel.chargingLevel }}</p>
     <p>Timestamp: {{ latestBatteryLevel.time }}</p>
-</div>
+</div>       
+        
