@@ -9,12 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import static home.awattar_hourly_price.AwattarHourlyPriceApplication.properties;
+import java.text.DecimalFormat;
+import java.util.Properties;
+
+import static home.awattar_hourly_price.Logic.StatusInformations.*;
+
 
 @Controller
 public class BatteryController {
     @Autowired
     private BatteryRepository repository;
+
+    Properties properties = new Properties();
 
     @GetMapping("/battery")
     public @ResponseBody BatteryData battery() {
@@ -31,8 +37,8 @@ public class BatteryController {
                 return new ResponseEntity<>("Data is logically flawed!", HttpStatus.BAD_REQUEST);
             }
 
-            properties.setProperty("batteryMinimum", minimum);
-            properties.setProperty("batteryMaximum", maximum);
+            setBatteryMinimum(min);
+            setBatteryMaximum(max);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NumberFormatException ex) {
@@ -42,12 +48,20 @@ public class BatteryController {
 
     @GetMapping("/getBatteryProperties")
     public @ResponseBody ResponseEntity<String> getBatteryProperties() {
-        String min = properties.getProperty("batteryMinimum");
-        String max = properties.getProperty("batteryMaximum");
 
         JsonObject response = new JsonObject();
-        response.addProperty("batteryMinimum", min);
-        response.addProperty("batteryMaximum", max);
+        response.addProperty("batteryMinimum", getBatteryMinimum());
+        response.addProperty("batteryMaximum", getBatteryMaximum());
+
+        return new ResponseEntity<>(response.toString(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getBatteryCharge")
+    public @ResponseBody ResponseEntity<String> getCurrentCharge() {
+
+        JsonObject response = new JsonObject();
+        DecimalFormat df = new DecimalFormat("#.##");
+        response.addProperty("batteryCharge", df.format(getBatteryCharge()));
 
         return new ResponseEntity<>(response.toString(), HttpStatus.OK);
     }

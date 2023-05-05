@@ -11,5 +11,6 @@ public interface DatapointRepository extends CrudRepository<Datapoint, Long> {
 
     List<Datapoint> findDatapointByStartDate(Timestamp time);
 
+    Datapoint findTopByOrderByIdDesc();
 
 }
