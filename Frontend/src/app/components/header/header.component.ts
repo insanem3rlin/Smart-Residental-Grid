@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  title:string = 'Smart Residental Grid';
+  title:string = 'Intelligent Residential Power Grid';
   showAddTask: boolean;
   subscription: Subscription;
   
