@@ -23,8 +23,7 @@ public class PV {
     public PV() {
     }
 
-    public PV(Long id, Timestamp timestamp, double watt) {
-        this.id = id;
+    public PV(Timestamp timestamp, double watt) {
         this.timestamp = timestamp;
         this.watt = watt;
     }
