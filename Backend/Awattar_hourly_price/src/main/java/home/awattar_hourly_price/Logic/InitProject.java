@@ -11,6 +11,8 @@ public class InitProject {
     Properties properties;
     @PostConstruct
     private void init() {
-        StatusInformations.setProperties();
+        StatusInformation.setProperties();
+        //Start PV generation
+        //Start demand generation
     }
 }
