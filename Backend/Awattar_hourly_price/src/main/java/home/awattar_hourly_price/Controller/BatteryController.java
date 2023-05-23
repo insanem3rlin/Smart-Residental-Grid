@@ -1,7 +1,7 @@
 package home.awattar_hourly_price.Controller;
 
 import com.google.gson.JsonObject;
-import home.awattar_hourly_price.Models.BatteryData;
+import home.awattar_hourly_price.Models.Battery;
 import home.awattar_hourly_price.Repositories.BatteryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DecimalFormat;
 import java.util.Properties;
 
-import static home.awattar_hourly_price.Logic.StatusInformations.*;
+import static home.awattar_hourly_price.Logic.StatusInformation.*;
 
 
 @Controller
@@ -23,7 +23,7 @@ public class BatteryController {
     Properties properties = new Properties();
 
     @GetMapping("/battery")
-    public @ResponseBody BatteryData battery() {
+    public @ResponseBody Battery battery() {
         return repository.findTopByOrderByIdDesc();
     }
 

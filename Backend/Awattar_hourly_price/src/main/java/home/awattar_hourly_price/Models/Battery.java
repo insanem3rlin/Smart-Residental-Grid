@@ -5,14 +5,24 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-public class BatteryData {
+public class Battery {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public Long chargingLevel;
+    public double chargingLevel;
+
+    public double watt;
     public Timestamp time;
+
+    public Battery() {}
+
+    public Battery(double chargingLevel, double watt, Timestamp timestamp) {
+        this.chargingLevel = chargingLevel;
+        this.watt = watt;
+        this.time = timestamp;
+    }
 
     public Long getId() {
         return id;
