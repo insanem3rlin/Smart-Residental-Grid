@@ -26,9 +26,9 @@ import java.util.logging.Logger;
 
 
 @Controller
-public class ReadJsonController {
+public class DatapointController {
 
-    Logger logger = Logger.getLogger(ReadJsonController.class.getName());
+    Logger logger = Logger.getLogger(DatapointController.class.getName());
 
     @Autowired
     private DatapointRepository datapointRepository;
@@ -38,41 +38,6 @@ public class ReadJsonController {
     private AverageByMonthRepository averageByMonthRepository;
     @Autowired
     private AverageByDayRepository averageByDayRepository;
-
-    @PostConstruct
-    public @ResponseBody Iterable<Datapoint> loadDatapoints() throws IOException {
-        Gson gson = new Gson();
-        String apiUrl;
-        Datapoint lastRecord = datapointRepository.findTopByOrderByIdDesc();
-        long end = System.currentTimeMillis();
-        long start;
-        if (lastRecord == null) {
-            start = end - Long.parseLong("2592000000");
-        } else {
-            start = lastRecord.getEndDate().getTime();
-        }
-        end = end + 36 * 60 * 60 * 1000;
-        apiUrl = "https://api.awattar.at/v1/marketdata?start=" + start + "&end=" + end;
-
-        URL url = new URL(apiUrl);
-        InputStreamReader reader = new InputStreamReader(url.openStream());
-        MarketData marketData = gson.fromJson(reader, MarketData.class);
-        List<Datapoint> points = new ArrayList<>();
-        try {
-            for (Datapoint d : marketData.getData()
-            ) {
-                d.setValue(d.getValue() / 10);
-                d.setUnity("cent/kWH");
-                points.add(d);
-            }
-            datapointRepository.saveAll(points);
-        } catch (Exception ex) {
-            logger.log(Level.WARNING, ex.toString());
-        } finally {
-            return marketData.getData();
-        }
-    }
-
 
     @GetMapping("/getAllPoints")
     public @ResponseBody Iterable<Datapoint> getAllPoints() {

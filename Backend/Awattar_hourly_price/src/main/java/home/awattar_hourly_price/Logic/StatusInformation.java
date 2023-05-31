@@ -1,6 +1,16 @@
 package home.awattar_hourly_price.Logic;
 
+import home.awattar_hourly_price.Models.Datapoint;
+import home.awattar_hourly_price.Repositories.BatteryRepository;
+import home.awattar_hourly_price.Repositories.DatapointRepository;
+import home.awattar_hourly_price.Repositories.PVRepository;
+import home.awattar_hourly_price.Repositories.SupplierRepository;
+
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import static home.awattar_hourly_price.Logic.Persistence.*;
 
 public class StatusInformation {
 
@@ -14,6 +24,7 @@ public class StatusInformation {
     private static Timestamp pvTimestamp;
     private static Timestamp batteryTimestamp;
     private static Timestamp supplierTimestamp;
+    private static List<Datapoint> datapoints;
 
     public static void setProperties() {
         batteryMaximum = 100;
@@ -23,6 +34,8 @@ public class StatusInformation {
         Timestamp now = new Timestamp(System.currentTimeMillis());
         pvTimestamp = now;
         batteryTimestamp = now;
+        supplierTimestamp = now;
+        datapoints = new ArrayList<>();
     }
 
     public static void setBatteryMaximum(int batteryMaximum) {
@@ -45,20 +58,38 @@ public class StatusInformation {
         return batteryCharge;
     }
 
-    public static double getPv() {return pv; }
-    private static void updatePV(double value) {
-        pvTimestamp = Persistance.persistPV(pv, pvTimestamp);
+    public static double getPv() {
+        return pv;
+    }
+
+    public static void updatePV(double value, PVRepository pvRepository) {
+        pvTimestamp = persistPV(pv, pvTimestamp, pvRepository);
         pv = value;
     }
 
-    private static void updateBattery(double value) {
+    public static void updateBattery(double value, BatteryRepository batteryRepository) {
         batteryCharge = batteryCharge + (value / batteryCapacity);
-        batteryTimestamp = Persistance.persistBattery(batteryCharge, battery, batteryTimestamp);
+        batteryTimestamp = persistBattery(batteryCharge, battery, batteryTimestamp, batteryRepository);
         battery = value;
     }
 
-    private static void updateSupplier(double value) {
-        supplierTimestamp = Persistance.persistSupplier(supplier, supplierTimestamp);
+    public static void updateSupplier(double value, SupplierRepository supplierRepository) {
+        supplierTimestamp = persistSupplier(supplier, supplierTimestamp, supplierRepository);
         supplier = value;
+    }
+
+    public static void updateDemand(double value, SupplierRepository supplierRepository, BatteryRepository batteryRepository) {
+        if (value > pv) {
+            updateBattery(-pv, batteryRepository);
+            updateSupplier(pv - value, supplierRepository);
+        } else {
+            updateBattery(-(pv - value), batteryRepository);
+        }
+    }
+
+    public static void updateDatapoints(DatapointRepository datapointRepository) {
+        persistDatapoints(datapointRepository);
+        datapoints.clear();
+        datapoints.addAll(getDatapoints(datapointRepository, new Timestamp(System.currentTimeMillis())));
     }
 }
