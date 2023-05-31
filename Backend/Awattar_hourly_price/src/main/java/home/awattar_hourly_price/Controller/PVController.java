@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Iterator;
+
 @Controller
 public class PVController {
     @Autowired
@@ -23,8 +25,17 @@ public class PVController {
     @GetMapping("/getPVOutput")
     public @ResponseBody ResponseEntity<String> getPVOutput() {
         JsonObject response = new JsonObject();
-        response.addProperty("PVOutput", (Number) getPV());
 
+        Iterator<PV> iter = getPV().iterator();
+        PV pv = null;
+
+        while(iter.hasNext()) {
+            pv = iter.next();
+        }
+
+        if(pv != null) {
+            response.addProperty("PVOutput", pv.getWatt());
+        }
         return new ResponseEntity<>(response.toString(), HttpStatus.OK);
     }
 }

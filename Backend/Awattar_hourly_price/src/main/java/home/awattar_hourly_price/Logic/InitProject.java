@@ -46,7 +46,7 @@ public class InitProject {
                 try {
                     Thread.sleep(i);
                     updatePV(r.nextInt(i), pvRepository);
-                    System.out.println("PV new value");
+                    //System.out.println("PV new value");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -63,7 +63,7 @@ public class InitProject {
                 try {
                     Thread.sleep(i);
                     updateDemand(r.nextInt(i), supplierRepository, batteryRepository);
-                    System.out.println("Demand new value");
+                    //System.out.println("Demand new value");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
