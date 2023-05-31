@@ -1,7 +1,6 @@
 package home.awattar_hourly_price.Controller;
 
 import com.google.gson.JsonObject;
-import home.awattar_hourly_price.Logic.StatusInformation;
 import home.awattar_hourly_price.Models.PV;
 import home.awattar_hourly_price.Repositories.PVRepository;
 import org.springframework.beans.factory.annotation.Autowired;
