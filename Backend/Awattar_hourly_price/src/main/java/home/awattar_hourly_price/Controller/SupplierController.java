@@ -19,6 +19,7 @@ public class SupplierController {
     public @ResponseBody ResponseEntity<String> getLatestConsumer() {
         JsonObject response = new JsonObject();
         Supplier sp = supplierRepository.findTopByOrderByIdDesc();
+        response.addProperty("id", sp.getId());
         response.addProperty("time", String.valueOf(sp.time));
         response.addProperty("watt", sp.watt);
         return new ResponseEntity<>(response.toString(), HttpStatus.OK);

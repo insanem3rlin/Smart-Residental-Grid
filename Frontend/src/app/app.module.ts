@@ -14,6 +14,7 @@ import { EnergyPriceComponent } from './components/energy-price/energy-price.com
 import { EnergyProductionComponent } from './components/energy-production/energy-production.component';
 import { EnergyUsageComponent } from './components/energy-usage/energy-usage.component';
 import { EnergyFlowComponent } from './components/energy-flow/energy-flow.component';
+import { SetMinBatteryComponent } from './components/set-min-battery/set-min-battery.component';
 
 const appRoutes: Routes = [
   
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     EnergyPriceComponent,
     EnergyProductionComponent,
     EnergyUsageComponent,
-    EnergyFlowComponent
+    EnergyFlowComponent,
+    SetMinBatteryComponent
   ],
   imports: [
     BrowserModule,

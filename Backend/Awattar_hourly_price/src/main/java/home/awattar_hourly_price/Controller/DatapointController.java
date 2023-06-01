@@ -39,6 +39,11 @@ public class DatapointController {
     @Autowired
     private AverageByDayRepository averageByDayRepository;
 
+
+    @GetMapping("/latestDatapoint")
+    public @ResponseBody Datapoint getLatestPoint() {
+        return datapointRepository.findTopByOrderByIdDesc();
+    }
     @GetMapping("/getAllPoints")
     public @ResponseBody Iterable<Datapoint> getAllPoints() {
         return datapointRepository.findAll();

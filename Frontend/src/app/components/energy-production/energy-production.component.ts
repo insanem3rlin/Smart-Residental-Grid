@@ -13,6 +13,9 @@ export class EnergyProductionComponent {
   latestEnergyProduction: EnergyProduction;
   source = interval(1000);
 
+  name: any;
+  level: any;
+  width: any;
 
   constructor(private energyService: EnergyService) { }
 
@@ -20,6 +23,9 @@ export class EnergyProductionComponent {
     this.getLatestEnergyProduction();
     this.source.subscribe(value => {
       this.getLatestEnergyProduction();
+      this.width = this.latestEnergyProduction.watt; //Anstatt "this.width müsste man denke ich dann ebenfalls this.getLatestBatteryLevel() nehmen. dann wär das vermutlich bereits der richtige Wert aus dem Backend"
+      this.name = "Latest Energy Production in Watts";
+      this.level= this.width;
     });
   }
 

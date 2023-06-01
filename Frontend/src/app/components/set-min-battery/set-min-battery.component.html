@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()">
+    <label>
+      Enter the minimum Battery Level
+      <input type="number" [(ngModel)]="minLevel" name="MinimumBatteryLevel" required>
+    </label>
+    <label>
+        Enter the maximum Battery Level
+        <input type="number" [(ngModel)]="maxLevel" name="MaximumBatteryLevel" required>
+    </label>
+    <button type="submit">Submit</button>
+  </form>
