@@ -15,6 +15,8 @@ import { EnergyProductionComponent } from './components/energy-production/energy
 import { EnergyUsageComponent } from './components/energy-usage/energy-usage.component';
 import { EnergyFlowComponent } from './components/energy-flow/energy-flow.component';
 import { SetMinBatteryComponent } from './components/set-min-battery/set-min-battery.component';
+import { DecideToBuyComponent } from './components/decide-to-buy/decide-to-buy.component';
+import { DecideToSellComponent } from './components/decide-to-sell/decide-to-sell.component';
 
 const appRoutes: Routes = [
   
@@ -31,7 +33,9 @@ const appRoutes: Routes = [
     EnergyProductionComponent,
     EnergyUsageComponent,
     EnergyFlowComponent,
-    SetMinBatteryComponent
+    SetMinBatteryComponent,
+    DecideToBuyComponent,
+    DecideToSellComponent
   ],
   imports: [
     BrowserModule,

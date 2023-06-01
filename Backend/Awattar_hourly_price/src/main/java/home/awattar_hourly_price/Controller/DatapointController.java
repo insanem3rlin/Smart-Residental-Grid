@@ -40,6 +40,16 @@ public class DatapointController {
     private AverageByDayRepository averageByDayRepository;
 
 
+    @GetMapping("/bestSlotToBuy")
+    public @ResponseBody Datapoint getBestHourToBuyInNext24Hours() {
+        return datapointRepository.findTopByOrderByValueAsc();
+    }
+
+    @GetMapping("/bestSlotToSell")
+    public @ResponseBody Datapoint getBestHourToSellInNext24Hours() {
+        return datapointRepository.findTopByOrderByValueDesc();
+    }
+
     @GetMapping("/latestDatapoint")
     public @ResponseBody Datapoint getLatestPoint() {
         return datapointRepository.findTopByOrderByIdDesc();

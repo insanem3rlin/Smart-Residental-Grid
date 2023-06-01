@@ -1,0 +1,14 @@
+<div>
+    <p>The best price to sell in the next 24 hours is: {{ datapoint.value }}</p>
+    <p>This is in the timeslot: {{ datapoint.startDate }} - {{ datapoint.endDate }}</p>
+    <form (ngSubmit)="onSubmit()">
+        <label>
+          Up to which battery level do you want to sell?<br>
+          <input type="number" [(ngModel)]="fillLevel" name="FillLevel" required>
+          <br>
+        </label>
+        <button type="submit">WEEENIGGEERRRRR EEENERGIEEEEEEEEEEE</button>
+      </form>
+</div>
+
+

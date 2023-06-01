@@ -16,5 +16,17 @@ public interface DatapointRepository extends CrudRepository<Datapoint, Long> {
 
     Datapoint findTopByOrderByIdDesc();
 
+
+    /**
+     * TODO: des muss hald dann die beste value in die nächsten 24 hours zrückgeben und ned allgemein. K.A. wie des geht. Viel Spaß Flo!!!!
+     * @return Datapoint
+     */
+    Datapoint findTopByOrderByValueAsc();
+    /**
+     * TODO: des muss hald dann die beste value in die nächsten 24 hours zrückgeben und ned allgemein. K.A. wie des geht. Viel Spaß Flo!!!!
+     * @return Datapoint
+     */
+    Datapoint findTopByOrderByValueDesc();
+
     List<Datapoint> findDatapointByEndDateAfter(Timestamp timestamp);
 }
