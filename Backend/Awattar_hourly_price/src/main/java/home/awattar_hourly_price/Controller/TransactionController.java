@@ -21,7 +21,7 @@ public class TransactionController {
     private TransactionRepository transactionRepository;
 
     @PostMapping("/transaction")
-    public @ResponseBody ResponseEntity<String> insertTransaction(@RequestParam String fillLevel, @RequestParam String startTime, @RequestParam String endTime, @RequestParam String isBuy) {
+    public @ResponseBody ResponseEntity<String> insertTransaction(@RequestParam String maxLevel, @RequestParam String amount, @RequestParam String startTime, @RequestParam String endTime, @RequestParam String isBuy) {
 
         startTime = startTime.replace(" ", "+");
         endTime = endTime.replace(" ", "+");
@@ -35,10 +35,10 @@ public class TransactionController {
         Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
 
         if(isBuy.equals("true")) {
-            transactionRepository.save(new Transaction(fillLevel, startTimestamp.toString(), endTimestamp.toString(), true));
+            transactionRepository.save(new Transaction(maxLevel, amount, startTimestamp.toString(), endTimestamp.toString(), true));
         }
         else if(isBuy.equals("false")){
-            transactionRepository.save(new Transaction(fillLevel, startTimestamp.toString(), endTimestamp.toString(), false));
+            transactionRepository.save(new Transaction(maxLevel, amount, startTimestamp.toString(), endTimestamp.toString(), false));
         }
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

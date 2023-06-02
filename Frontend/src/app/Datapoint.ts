@@ -1,7 +1,8 @@
 export interface Datapoint {
     startDate: Date
     endDate: Date
-    value: Number
+    value: number
     unity: string
     id: Number
+    selected: boolean
 }

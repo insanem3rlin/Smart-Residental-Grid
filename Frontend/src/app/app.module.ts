@@ -17,6 +17,8 @@ import { EnergyFlowComponent } from './components/energy-flow/energy-flow.compon
 import { SetMinBatteryComponent } from './components/set-min-battery/set-min-battery.component';
 import { DecideToBuyComponent } from './components/decide-to-buy/decide-to-buy.component';
 import { DecideToSellComponent } from './components/decide-to-sell/decide-to-sell.component';
+import { PopupComponent } from './components/popup/popup.component';
+import { DatapointTableComponent } from './components/datapoint-table/datapoint-table.component';
 
 const appRoutes: Routes = [
   
@@ -35,7 +37,9 @@ const appRoutes: Routes = [
     EnergyFlowComponent,
     SetMinBatteryComponent,
     DecideToBuyComponent,
-    DecideToSellComponent
+    DecideToSellComponent,
+    PopupComponent,
+    DatapointTableComponent
   ],
   imports: [
     BrowserModule,

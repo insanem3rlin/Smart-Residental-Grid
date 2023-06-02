@@ -51,9 +51,15 @@ public class DatapointController {
         return datapointRepository.findTopByOrderByValueDesc();
     }
 
-    @GetMapping("/latestDatapoints")
-    public @ResponseBody Iterable<Datapoint> getLatestPoints() {
+    @GetMapping("futureDatapoints")
+    public @ResponseBody Iterable<Datapoint> getFuturePoints() {
         return datapointRepository.findDatapointByEndDateAfter(new Timestamp(System.currentTimeMillis()));
+    }
+
+
+    @GetMapping("/latestDatapoint")
+    public @ResponseBody Datapoint getLatestDatapoint() {
+        return datapointRepository.findTopByOrderByIdDesc();
     }
     @GetMapping("/getAllPoints")
     public @ResponseBody Iterable<Datapoint> getAllPoints() {

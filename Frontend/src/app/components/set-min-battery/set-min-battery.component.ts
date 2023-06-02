@@ -17,4 +17,12 @@ export class SetMinBatteryComponent {
       err => console.log(err)
     );
   }
+  showPopup: boolean = false;
+
+  openPopup() {
+    this.showPopup = true;
+    setTimeout(() => {
+      this.showPopup = false;
+    }, 1000); // Hide the popup after 3 seconds (adjust as needed)
+  }
 }

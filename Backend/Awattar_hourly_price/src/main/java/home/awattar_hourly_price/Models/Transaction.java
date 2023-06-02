@@ -18,8 +18,11 @@ public class Transaction {
     public Timestamp endTime;
 
     public String fillLevel;
-    public Transaction(String fillLevel, String startTime, String endTime, boolean isBuy) {
-        this.fillLevel = fillLevel;
+
+    public String amount;
+    public Transaction(String maxLevel, String amount, String startTime, String endTime, boolean isBuy) {
+        this.amount = amount;
+        this.fillLevel = maxLevel;
         this.startTime = Timestamp.valueOf(startTime);
         this.endTime = Timestamp.valueOf(endTime);
         this.isBuy = isBuy;

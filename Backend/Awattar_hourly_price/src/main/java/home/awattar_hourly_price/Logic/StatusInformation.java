@@ -29,7 +29,7 @@ public class StatusInformation {
     public static void setProperties() {
         batteryMaximum = 100;
         batteryMinimum = 50;
-        batteryCharge = 0;
+        batteryCharge = 25;
         batteryCapacity = 200000;
         Timestamp now = new Timestamp(System.currentTimeMillis());
         pvTimestamp = now;
@@ -64,7 +64,7 @@ public class StatusInformation {
 
     public static void updatePV(double value, PVRepository pvRepository) {
         pvTimestamp = persistPV(pv, pvTimestamp, pvRepository);
-        if(value < dem)
+        //if(value < dem)
         pv = value;
     }
 
@@ -79,12 +79,12 @@ public class StatusInformation {
         supplier = value;
     }
 
-    public static void updateDemand(double value, SupplierRepository supplierRepository, BatteryRepository batteryRepository) {
-        if (value > pv) {
+    public static void updateDemand(double demand, SupplierRepository supplierRepository, BatteryRepository batteryRepository) {
+        if (demand > pv) {
             updateBattery(-pv, batteryRepository);
-            updateSupplier(pv - value, supplierRepository);
+            updateSupplier(pv - demand, supplierRepository);
         } else {
-            updateBattery(-(pv - value), batteryRepository);
+            updateBattery(-(pv - demand), batteryRepository);
         }
     }
 

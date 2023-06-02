@@ -8,6 +8,7 @@ import { Data } from '@angular/router';
   providedIn: 'root'
 })
 export class DatapointService {
+  private futureDatapointsAPI: string = "http://localhost:8080/futureDatapoints"
   private latestDatapointAPI: string = "http://localhost:8080/latestDatapoint"
   private bestSlotToBuyAPI: string = "http://localhost:8080/bestSlotToBuy"
   private bestSlotToSellAPI: string = "http://localhost:8080/bestSlotToSell"
@@ -15,6 +16,10 @@ export class DatapointService {
 
   constructor(private http: HttpClient) { }
 
+
+  getFutureDatapoints(): Observable<Datapoint[]> {
+    return this.http.get<Datapoint[]>(this.futureDatapointsAPI);
+  }
 
   getLatestDatapoint(): Observable<Datapoint> {
     return this.http.get<Datapoint>(this.latestDatapointAPI);
@@ -26,9 +31,10 @@ export class DatapointService {
   getBestSlotToSell(): Observable<Datapoint> {
     return this.http.get<Datapoint>(this.bestSlotToSellAPI)
   }
-  setTransaction(fillLevel:number, startTime:Date, endTime:Date, isBuy:Boolean): Observable<any> {
+  setTransaction(maxLevel:number, amount:number, startTime:Date, endTime:Date, isBuy:Boolean): Observable<any> {
     let params = new HttpParams();
-    params = params.append('fillLevel', fillLevel.toString());
+    params = params.append('maxLevel', maxLevel.toString());
+    params = params.append('amount', amount.toString());
     params = params.append('startTime', startTime.toString());
     params = params.append('endTime', endTime.toString());
     params = params.append('isBuy', isBuy.toString());

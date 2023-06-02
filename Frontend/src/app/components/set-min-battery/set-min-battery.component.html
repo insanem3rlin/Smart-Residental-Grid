@@ -1,3 +1,5 @@
+<h1 style="font-size: 26px;">Set Battery Properties</h1>
+
 <form (ngSubmit)="onSubmit()">
     <label>
       Enter the minimum Battery Level<br>
@@ -9,5 +11,7 @@
         <input type="number" [(ngModel)]="maxLevel" name="MaximumBatteryLevel" required>
         <br>
     </label>
-    <button type="submit">Submit</button>
+    <button (click)="openPopup()" type="submit">Submit</button>
+    <app-popup *ngIf="showPopup"></app-popup>
+
   </form>

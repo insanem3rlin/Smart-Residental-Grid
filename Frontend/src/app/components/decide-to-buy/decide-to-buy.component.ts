@@ -21,10 +21,11 @@ export class DecideToBuyComponent {
   }
 
   onSubmit() {
-    this.datapointService.setTransaction(this.fillLevel, this.datapoint.startDate, this.datapoint.endDate, this.isBuy).subscribe(
+ 
+ /*   this.datapointService.setTransaction(this.fillLevel, this.datapoint.startDate, this.datapoint.endDate, this.isBuy).subscribe(
       res => console.log(res),
       err => console.log(err)
-    );
+    );*/
   }
 }
 
