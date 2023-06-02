@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -50,9 +51,9 @@ public class DatapointController {
         return datapointRepository.findTopByOrderByValueDesc();
     }
 
-    @GetMapping("/latestDatapoint")
-    public @ResponseBody Datapoint getLatestPoint() {
-        return datapointRepository.findTopByOrderByIdDesc();
+    @GetMapping("/latestDatapoints")
+    public @ResponseBody Iterable<Datapoint> getLatestPoints() {
+        return datapointRepository.findDatapointByEndDateAfter(new Timestamp(System.currentTimeMillis()));
     }
     @GetMapping("/getAllPoints")
     public @ResponseBody Iterable<Datapoint> getAllPoints() {

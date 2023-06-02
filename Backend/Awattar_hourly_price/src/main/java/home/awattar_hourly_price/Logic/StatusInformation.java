@@ -64,6 +64,7 @@ public class StatusInformation {
 
     public static void updatePV(double value, PVRepository pvRepository) {
         pvTimestamp = persistPV(pv, pvTimestamp, pvRepository);
+        if(value < dem)
         pv = value;
     }
 

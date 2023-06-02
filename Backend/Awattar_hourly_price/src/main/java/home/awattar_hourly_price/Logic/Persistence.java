@@ -43,6 +43,16 @@ public class Persistence {
         return now;
     }
 
+    ///TODO
+    public static Timestamp persistDemand(double value, Timestamp supplierTimestamp, SupplierRepository supplierRepository) {
+        ///TODO finishing it
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        double watt = (now.getTime() - supplierTimestamp.getTime()) * value / 1000;
+        supplierRepository.save(new Supplier(watt, now));
+        return now;
+        ///TODO
+    }
+
     public static Timestamp persistDatapoints(DatapointRepository datapointRepository) {
         Gson gson = new Gson();
         String apiUrl;
@@ -78,4 +88,5 @@ public class Persistence {
     public static List<Datapoint> getDatapoints(DatapointRepository datapointRepository, Timestamp timestamp) {
         return datapointRepository.findDatapointByEndDateAfter(timestamp);
     }
+
 }
