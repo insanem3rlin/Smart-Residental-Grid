@@ -33,4 +33,16 @@ export class EnergyPriceComponent {
       this.latestEnergyPrice = result;
     })
   }
+  scaleProgressValue(value: number, minValue: number, maxValue: number): number {
+    return ((value - minValue) / (maxValue - minValue)) * 100;
+  }
+  getColor(value: number): string {
+    if (value < 6) {
+      return '#008000'; 
+    } else if (value < 11) {
+      return '#ff8c00'; 
+    } else {
+      return '#ff0000';
+    }
+  }
 }

@@ -1,15 +1,8 @@
 <div class="name">
-    <p style="font-size: 26px"><b>{{name}}</b></p>
-    <div class="first">
-        <div [ngStyle]="{'width.%' :width}" class="second">
-            <div class="third">
-                <p style="font-size: 26px"><b>{{level}}</b></p>
-            </div>
-        </div>
+    <p style="font-size: 26px"><b> Energy Production at: {{ latestEnergyProduction.timestamp | date: 'yyyy-MM-dd-HH-mm-ss'  }} </b></p>
+    <div class="progress-bar">
+    <div [style.width.%]="scaleProgressValue(width, 0 , 5000)" [style.background]="getColor(width)" class="progress-fill">
+      {{ width }}
     </div>
-</div>
-
-<div>
-    <p>StartTime: {{ latestEnergyProduction.timestamp }}</p>
-    <p>EndTime: gibts nu ned</p>
+  </div>
 </div>

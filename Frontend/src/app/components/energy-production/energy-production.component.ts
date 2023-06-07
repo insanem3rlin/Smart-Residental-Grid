@@ -35,5 +35,19 @@ export class EnergyProductionComponent {
       this.latestEnergyProduction = this.listOfEnergyProduction[this.listOfEnergyProduction.length-1];
     })
   }
+  scaleProgressValue(value: number, minValue: number, maxValue: number): number {
+    return ((value - minValue) / (maxValue - minValue)) * 100;
+  }
+
+  getColor(value: number): string {
+    if (value < 1500) {
+      return '#ff0000'; // red for values less than 1500
+    } else if (value < 3000) {
+      return '#ff8c00'; // orange for values between 1500 and 3000
+    } else {
+      return '#008000'; // green for values greater than 3000
+    }
+  }
+
 }
 

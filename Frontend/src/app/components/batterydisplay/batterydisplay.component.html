@@ -1,12 +1,10 @@
+
 <div class="name">
     <p style="font-size: 26px"><b>{{name}}</b></p>
-    <div class="first">
-        <div [ngStyle]="{'width.%' :width}" class="second">
-            <div class="third">
-                <p style="font-size: 26px"><b>{{level}}</b></p>
-            </div>
-        </div>
+    <div class="progress-bar">
+    <div [style.width.%]="width" [style.background]="getColor(width)" class="progress-fill">
+      {{ roundValue(width) }}%
     </div>
+  </div>
 </div>
-     
         

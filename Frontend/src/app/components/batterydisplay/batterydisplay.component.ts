@@ -13,7 +13,7 @@ export class BatterydisplayComponent implements OnInit {
 
   latestBatteryLevel: BatteryLevel;
   source = interval(1000);
-  width: any;
+  width: number;
   name: any;
   level: any;
 
@@ -34,5 +34,20 @@ export class BatterydisplayComponent implements OnInit {
     this.batteryService.getLatestBatteryLevel().subscribe(result => {
       this.latestBatteryLevel = result;
     })
+  }
+
+
+  roundValue(value: number) {
+    return Math.round(value * 100) / 100;
+  }
+
+  getColor(value: number): string {
+    if (value < 10) {
+      return '#ff0000'; // red for values less than 1500
+    } else if (value < 40) {
+      return '#ff8c00'; // orange for values between 1500 and 3000
+    } else {
+      return '#008000'; // green for values greater than 3000
+    }
   }
 }

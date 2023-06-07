@@ -5,35 +5,32 @@
     <thead>
       <tr>
         <th></th>
-        <th>ID</th>
         <th>Value</th>
         <th>Unity</th>
-        <th>StartDate</th>
-        <th>EndDate</th>
+        <th>Date and Hour</th>a
         <!-- Add more column headers as needed -->
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let datapoint of tableData">
         <td><input type="radio" name="selectedItem" [(ngModel)]="datapoint.selected" [value]="datapoint" /></td>
-        <td>{{ datapoint.id }}</td>
-        <td>{{ datapoint.value}}</td>
+        <td>{{ roundValue(datapoint.value )}}</td>
         <td>{{ datapoint.unity}}</td>
-        <td>{{ datapoint.startDate }}</td>
-        <td>{{ datapoint.endDate}}</td>
+        <td>{{ datapoint.startDate | date: 'yyyy-MM-dd-HH' }}</td>
         <!-- Add more table cells for other properties -->
       </tr>
     </tbody>
   </table>
   <br>
-  <div>
-    <label for="numberInput">Buy/Sell how much power in Watts:</label>
-    <input type="number" id="numberInput" [(ngModel)]="fill" />
+  <div style="margin-bottom: 1em;">
+    <label for="numberInput" style="display: block; margin-bottom: 0.5em;">Buy/Sell how many kWH:</label>
+    <input type="number" id="numberInput" [(ngModel)]="fill" style="margin-bottom: 1em;"/>
     <br>
-    <label for="maxInput">Buy/Sell to which level max:</label>
-    <input type="number" id="maxInput" [(ngModel)]="fillTo" />
+    <label for="maxInput" style="display: block; margin-bottom: 0.5em;">Buy/Sell to which level max:</label>
+    <input type="number" id="maxInput" [(ngModel)]="fillTo" style="margin-bottom: 1em;"/>
     <br>
-    <label for="buy">Buy?</label>
-    <input type="checkbox" id="buy" [(ngModel)]="buy"/>
-    <button (click)="submitData()">Submit</button>
-  </div>
+    <label for="buy" style="display: block; margin-bottom: 0.5em;">Buy?</label>
+    <input type="checkbox" id="buy" [(ngModel)]="buy" style="margin-bottom: 1em; margin-left: 1em;"/>
+    <br>
+    <button (click)="submitData()" style="margin-top: 1em;">Submit</button>
+</div>
