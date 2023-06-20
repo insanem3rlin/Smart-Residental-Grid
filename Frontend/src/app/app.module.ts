@@ -12,13 +12,14 @@ import { PowerdisplayComponent } from './components/powerdisplay/powerdisplay.co
 import { BatterydisplayComponent } from './components/batterydisplay/batterydisplay.component';
 import { EnergyPriceComponent } from './components/energy-price/energy-price.component';
 import { EnergyProductionComponent } from './components/energy-production/energy-production.component';
-import { EnergyUsageComponent } from './components/energy-usage/energy-usage.component';
 import { EnergyFlowComponent } from './components/energy-flow/energy-flow.component';
 import { SetMinBatteryComponent } from './components/set-min-battery/set-min-battery.component';
 import { DecideToBuyComponent } from './components/decide-to-buy/decide-to-buy.component';
 import { DecideToSellComponent } from './components/decide-to-sell/decide-to-sell.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { DatapointTableComponent } from './components/datapoint-table/datapoint-table.component';
+import { EnergySupplyComponent } from './components/energy-supply/energy-supply.component';
+import { EnergyConsumerComponent } from './components/energy-consumer/energy-consumer.component';
 
 const appRoutes: Routes = [
   
@@ -33,13 +34,14 @@ const appRoutes: Routes = [
     BatterydisplayComponent,
     EnergyPriceComponent,
     EnergyProductionComponent,
-    EnergyUsageComponent,
     EnergyFlowComponent,
     SetMinBatteryComponent,
     DecideToBuyComponent,
     DecideToSellComponent,
     PopupComponent,
-    DatapointTableComponent
+    DatapointTableComponent,
+    EnergySupplyComponent,
+    EnergyConsumerComponent
   ],
   imports: [
     BrowserModule,

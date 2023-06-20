@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnergyUsageComponent } from './energy-usage.component';
+import { EnergySupplyComponent } from './energy-supply.component';
 
-describe('EnergyUsageComponent', () => {
-  let component: EnergyUsageComponent;
-  let fixture: ComponentFixture<EnergyUsageComponent>;
+describe('EnergySupplyComponent', () => {
+  let component: EnergySupplyComponent;
+  let fixture: ComponentFixture<EnergySupplyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EnergyUsageComponent ]
+      declarations: [ EnergySupplyComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EnergyUsageComponent);
+    fixture = TestBed.createComponent(EnergySupplyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

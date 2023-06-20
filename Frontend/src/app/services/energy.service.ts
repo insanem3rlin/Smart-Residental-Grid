@@ -6,6 +6,7 @@ import { EnergyProduction } from '../EnergyProduction';
 import { EnergyConsumption } from '../EnergyConsumption';
 import { Datapoint } from '../Datapoint';
 import { Data } from '@angular/router';
+import { EnergySupply } from '../EnergySupply';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ import { Data } from '@angular/router';
 export class EnergyService {
   private energylevelAPI: string = 'http://localhost:8080/energylevel';
   private energyProductionAPI: string = 'http://localhost:8080/PV';
-  private energyConsumptionAPI: string = 'http://localhost:8080/consumer'
+  private energySupplierAPI: string = 'http://localhost:8080/supplier'
+  private energyConsumerAPI: string = 'http://localhost:8080/consumer'
   private minBatteryApi: string = 'http://localhost:8080/setBatteryProperties'
 
   constructor(private http: HttpClient) { }
@@ -26,9 +28,14 @@ export class EnergyService {
   getLatestEnergyProduction(): Observable<EnergyProduction[]> { 
     return this.http.get<EnergyProduction[]>(this.energyProductionAPI);
   }
-  getLatestEnergyConsumption(): Observable<EnergyConsumption> {
-    return this.http.get<EnergyConsumption>(this.energyConsumptionAPI);
+  getLatestEnergySupply(): Observable<EnergySupply> {
+    return this.http.get<EnergySupply>(this.energySupplierAPI);
   }
+  getLatestEnergyConsumption(): Observable<EnergyConsumption> {
+    return this.http.get<EnergyConsumption>(this.energyConsumerAPI);
+  }
+
+
 
   setMinBattery(min: number, max: number): Observable<any> {
     let params = new HttpParams();

@@ -1,9 +1,0 @@
-<div class="name">
-    <p style="font-size: 26px"><b>Energy Consumption at: {{latestEnergyConsumption.time | date: 'dd.MM.yyyy HH:mm :ss'}}</b></p>
-    <div class="progress-bar">
-    <div [style.width.%]="scaleProgressValue(width*-1, 0 , 5000)" [style.background]="getColor(width*-1)" class="progress-fill">
-      {{ roundValue(width*-1)+ " W" }}
-    </div>
-  </div>
-</div>
-
