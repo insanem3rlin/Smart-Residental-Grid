@@ -22,7 +22,7 @@ export class EnergyPriceComponent {
     this.getLatestDatapoint();
     this.source.subscribe(value => {
       this.getLatestDatapoint();
-      this.width = this.latestEnergyPrice.value; //Anstatt "this.width müsste man denke ich dann ebenfalls this.getLatestBatteryLevel() nehmen. dann wär das vermutlich bereits der richtige Wert aus dem Backend"
+      this.width = this.latestEnergyPrice.value; 
       this.name = "Latest Energy Price in " + this.latestEnergyPrice.unity;
       this.level = this.width;
     });
