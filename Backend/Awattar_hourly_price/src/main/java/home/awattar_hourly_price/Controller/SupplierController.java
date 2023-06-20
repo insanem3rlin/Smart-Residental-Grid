@@ -15,7 +15,7 @@ public class SupplierController {
     @Autowired
     private SupplierRepository supplierRepository;
 
-    @GetMapping("/consumer")
+    @GetMapping("/supplier")
     public @ResponseBody ResponseEntity<String> getLatestConsumer() {
         JsonObject response = new JsonObject();
         Supplier sp = supplierRepository.findTopByOrderByIdDesc();
