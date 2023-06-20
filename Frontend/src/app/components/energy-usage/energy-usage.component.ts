@@ -22,9 +22,9 @@ export class EnergyUsageComponent {
     this.getLatestEnergyProduction();
     this.source.subscribe(value => {
       this.getLatestEnergyProduction();
-      this.width = this.latestEnergyConsumption.watt; //Anstatt "this.width müsste man denke ich dann ebenfalls this.getLatestBatteryLevel() nehmen. dann wär das vermutlich bereits der richtige Wert aus dem Backend"
+      this.width = this.latestEnergyConsumption.watt; 
       this.name = "Latest Energy Consumption in Watts";
-      this.level= this.width*-1;
+      this.level = this.width * -1;
     });
   }
 
@@ -32,6 +32,10 @@ export class EnergyUsageComponent {
     this.energyService.getLatestEnergyConsumption().subscribe(result => {
       this.latestEnergyConsumption = result;
     })
+  }
+
+  roundValue(value: number) {
+    return Math.round(value * 100) / 100;
   }
 
   scaleProgressValue(value: number, minValue: number, maxValue: number): number {
