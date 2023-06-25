@@ -1,9 +1,6 @@
 package home.awattar_hourly_price.Logic;
 
-import home.awattar_hourly_price.Repositories.BatteryRepository;
-import home.awattar_hourly_price.Repositories.DatapointRepository;
-import home.awattar_hourly_price.Repositories.PVRepository;
-import home.awattar_hourly_price.Repositories.SupplierRepository;
+import home.awattar_hourly_price.Repositories.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,8 @@ public class InitProject {
     SupplierRepository supplierRepository;
     @Autowired
     DatapointRepository datapointRepository;
+    @Autowired
+    ConsumerRepository consumerRepository;
 
     @PostConstruct
     private void init() {
@@ -45,7 +44,7 @@ public class InitProject {
                 int i = r.nextInt(4000, 5500);
                 try {
                     Thread.sleep(15000);
-                    updatePV(r.nextInt(i), pvRepository);
+                    updatePV(i, pvRepository);
                     //System.out.println("PV new value");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -62,7 +61,8 @@ public class InitProject {
                 int i = r.nextInt(3500, 4500);
                 try {
                     Thread.sleep(15000);
-                    updateDemand(r.nextInt(i), supplierRepository, batteryRepository);
+                    updateDemand(i, supplierRepository, batteryRepository);
+                    updateConsumer(i, consumerRepository);
                     //System.out.println("Demand new value");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

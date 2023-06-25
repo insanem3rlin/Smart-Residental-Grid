@@ -73,7 +73,7 @@ public class DatapointController {
         });
     }
 
-    @GetMapping("futureDatapoints")
+    @GetMapping("/futureDatapoints")
     public @ResponseBody Iterable<Datapoint> getFuturePoints() {
         return datapointRepository.findDatapointByEndDateAfter(new Timestamp(System.currentTimeMillis()));
     }

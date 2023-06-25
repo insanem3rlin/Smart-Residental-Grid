@@ -1,5 +1,5 @@
 <div class="name">
-    <p style="font-size: 26px"><b> Energy Price at: {{ latestEnergyPrice.startDate | date: 'dd.MM.yyyy HH:mm'  }}</b></p>
+    <p style="font-size: 26px"><b> Energy Price since: {{ latestEnergyPrice.startDate | date: 'dd.MM.yyyy HH:mm'  }}</b></p>
     <div class="progress-bar">
     <div [style.width.%]="scaleProgressValue(width, -5 , 15)" [style.background]="getColor(width)"class="progress-fill">
       {{ width +" cent"}}

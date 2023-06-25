@@ -3,10 +3,7 @@ package home.awattar_hourly_price.Logic;
 import com.google.gson.Gson;
 import home.awattar_hourly_price.Controller.DatapointController;
 import home.awattar_hourly_price.Models.*;
-import home.awattar_hourly_price.Repositories.BatteryRepository;
-import home.awattar_hourly_price.Repositories.DatapointRepository;
-import home.awattar_hourly_price.Repositories.PVRepository;
-import home.awattar_hourly_price.Repositories.SupplierRepository;
+import home.awattar_hourly_price.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -38,7 +35,7 @@ public class Persistence {
 
     public static Timestamp persistSupplier(double value, Timestamp supplierTimestamp, SupplierRepository supplierRepository) {
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        double watt = (now.getTime() - supplierTimestamp.getTime()) * value / 1000;
+        double watt = (now.getTime() - supplierTimestamp.getTime()) * value / 10000;
         supplierRepository.save(new Supplier(watt, now));
         return now;
     }
@@ -51,6 +48,13 @@ public class Persistence {
         supplierRepository.save(new Supplier(watt, now));
         return now;
         ///TODO
+    }
+
+    public static Timestamp persistConsumer(double demand, Timestamp consumerTimestamp, ConsumerRepository consumerRepository) {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        double watt = demand;
+        consumerRepository.save(new Consumer(watt, now));
+        return now;
     }
 
     public static Timestamp persistDatapoints(DatapointRepository datapointRepository) {

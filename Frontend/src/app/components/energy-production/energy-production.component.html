@@ -1,5 +1,5 @@
 <div class="name">
-    <p style="font-size: 26px"><b> Energy Production at: {{ latestEnergyProduction.timestamp | date: 'dd.MM.yyyy  HH:mm :ss'  }} </b></p>
+    <p style="font-size: 26px"><b> Energy Production since: {{ latestEnergyProduction.timestamp | date: 'dd.MM.yyyy  HH:mm :ss'  }} </b></p>
     <div class="progress-bar">
     <div [style.width.%]="scaleProgressValue(width, 0 , 5000)" [style.background]="getColor(width)" class="progress-fill">
       {{ width +" W" }}

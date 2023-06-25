@@ -1,10 +1,7 @@
 package home.awattar_hourly_price.Logic;
 
 import home.awattar_hourly_price.Models.Datapoint;
-import home.awattar_hourly_price.Repositories.BatteryRepository;
-import home.awattar_hourly_price.Repositories.DatapointRepository;
-import home.awattar_hourly_price.Repositories.PVRepository;
-import home.awattar_hourly_price.Repositories.SupplierRepository;
+import home.awattar_hourly_price.Repositories.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -20,10 +17,12 @@ public class StatusInformation {
     private static double batteryCharge;
     private static double pv;
     private static double supplier;
+    private static double consumer;
     private static double battery;
     private static Timestamp pvTimestamp;
     private static Timestamp batteryTimestamp;
     private static Timestamp supplierTimestamp;
+    private static Timestamp consumerTimestamp;
     private static List<Datapoint> datapoints;
 
     public static void setProperties() {
@@ -36,6 +35,7 @@ public class StatusInformation {
         batteryTimestamp = now;
         supplierTimestamp = now;
         datapoints = new ArrayList<>();
+        consumerTimestamp = now;
     }
 
     public static void setBatteryMaximum(int batteryMaximum) {
@@ -81,11 +81,17 @@ public class StatusInformation {
 
     public static void updateDemand(double demand, SupplierRepository supplierRepository, BatteryRepository batteryRepository) {
         if (demand > pv) {
-            updateBattery(-pv, batteryRepository);
-            updateSupplier(pv - demand, supplierRepository);
+            updateBattery(demand-pv, batteryRepository);
+            updateSupplier(pv - demand , supplierRepository);
         } else {
-            updateBattery(-(pv - demand), batteryRepository);
+            updateBattery(pv - demand, batteryRepository);
+            updateSupplier(0, supplierRepository);
         }
+    }
+
+    public static void updateConsumer(double demand, ConsumerRepository consumerRepository) {
+        consumerTimestamp = persistConsumer(consumer, consumerTimestamp,consumerRepository);
+        consumer = demand;
     }
 
     public static void updateDatapoints(DatapointRepository datapointRepository) {
