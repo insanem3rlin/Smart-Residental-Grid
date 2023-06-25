@@ -42,9 +42,9 @@ public class InitProject {
             @Override
             public void run() {
                 Random r = new Random();
-                int i = r.nextInt(1200, 4500);
+                int i = r.nextInt(4000, 5500);
                 try {
-                    Thread.sleep(i);
+                    Thread.sleep(15000);
                     updatePV(r.nextInt(i), pvRepository);
                     //System.out.println("PV new value");
                 } catch (InterruptedException e) {
@@ -59,9 +59,9 @@ public class InitProject {
             @Override
             public void run() {
                 Random r = new Random();
-                int i = r.nextInt(1200, 4500);
+                int i = r.nextInt(3500, 4500);
                 try {
-                    Thread.sleep(i);
+                    Thread.sleep(15000);
                     updateDemand(r.nextInt(i), supplierRepository, batteryRepository);
                     //System.out.println("Demand new value");
                 } catch (InterruptedException e) {
