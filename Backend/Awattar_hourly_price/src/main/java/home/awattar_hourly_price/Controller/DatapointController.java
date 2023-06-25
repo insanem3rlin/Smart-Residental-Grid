@@ -21,6 +21,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,19 +45,38 @@ public class DatapointController {
 
     @GetMapping("/bestSlotToBuy")
     public @ResponseBody Datapoint getBestHourToBuyInNext24Hours() {
-        return datapointRepository.findTopByOrderByValueAsc();
+        List<Datapoint> datapoints = datapointRepository.findDatapointByEndDateAfter(new Timestamp(System.currentTimeMillis()));
+        return Collections.max(datapoints, new Comparator<Datapoint>() {
+            @Override
+            public int compare(Datapoint o1, Datapoint o2) {
+                if (o1.getValue() > o2.getValue())
+                    return -1;
+                if (o1.getValue() == o2.getValue())
+                    return 0;
+                return 1;
+            }
+        });
     }
 
     @GetMapping("/bestSlotToSell")
     public @ResponseBody Datapoint getBestHourToSellInNext24Hours() {
-        return datapointRepository.findTopByOrderByValueDesc();
+        List<Datapoint> datapoints = datapointRepository.findDatapointByEndDateAfter(new Timestamp(System.currentTimeMillis()));
+        return Collections.min(datapoints, new Comparator<Datapoint>() {
+            @Override
+            public int compare(Datapoint o1, Datapoint o2) {
+                if (o1.getValue() > o2.getValue())
+                    return -1;
+                if (o1.getValue() == o2.getValue())
+                    return 0;
+                return 1;
+            }
+        });
     }
 
     @GetMapping("futureDatapoints")
     public @ResponseBody Iterable<Datapoint> getFuturePoints() {
         return datapointRepository.findDatapointByEndDateAfter(new Timestamp(System.currentTimeMillis()));
     }
-
 
     @GetMapping("/latestDatapoint")
     public @ResponseBody Datapoint getLatestDatapoint() {
